@@ -1,0 +1,48 @@
+.posts-title
+  投稿一覧
+.posts-contents
+  - if @posts.present?
+    - @posts.each do |post|
+      .post{"data-post-id": "#{post.id}"}
+        .post__box
+          .post__box__upper-info
+            .post__box__upper-info__user
+              = post.user.nickname
+            .post__box__upper-info__icon
+              = fa_icon 'bars'
+          .post__box__main-info
+            .post__box__main-info__image
+              = link_to post_path(post) do
+                - if post.image.file.content_type.include?('image/')
+                  = image_tag post.image.url, width: "100%", height: "100%", class: "index-image"
+                - else
+                  = video_tag post.image.url, width: "100%", height: "100%", class: "index-image", |
+                    controls: true, autobuffer: true
+          .post__box__middle-info
+            .post__box__middle-info__right
+              #{post.liked_users.count}人がいいねしています！
+            .post__box__middle-info__left
+              - if user_signed_in?
+                = fa_icon "comment-o", class: "comment-icon"
+                - if current_user.already_liked?(post)
+                  = link_to post_like_path(post,current_user), method: :delete, class: "liked-icon" do
+                    = fa_icon "heart"
+                - else
+                  = link_to post_likes_path(post), method: :post, class: "like-icon" do
+                    = fa_icon "heart-o"
+              - else
+                = link_to new_user_session_path, class: "like-icon" do
+                  = fa_icon "heart-o"
+          .post__box__lower-info
+            .post__box__lower-info__text
+              = post.title
+            .post__box__lower-info__code
+              .post__box__lower-info__code__date
+                = post.created_at.strftime("%Y/%m/%d %H:%M")
+              .post__box__lower-info__code__detail
+                = link_to post_path(post) ,class: "code-btn" do
+                  ＋詳しいコードを見る
+              -# = post.code
+
+  - else
+    投稿はまだありません。。

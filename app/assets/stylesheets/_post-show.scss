@@ -1,0 +1,128 @@
+.show-contents{
+  display: flex;
+  height: 100%;
+  min-height: 100vh;
+
+  &__items{
+    width: calc(100vw - 400px);
+    margin: 0 35px 10px;
+
+    &__image{
+      height: 550px;
+      width: 100%;
+      margin-bottom: 15px;
+
+      .show-image{
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+
+        &:focus{
+          outline: none;
+        }
+      }
+    }
+    &__detail{
+
+      &__upper-info{
+        margin: 10px 10px 0;
+
+        &__top{
+          display: flex;
+          justify-content: space-between;
+          padding-bottom: 10px;
+          border-bottom: solid 1px #eee;
+
+            &__box{
+
+            &__title{
+              margin-bottom: 5px;
+              font-weight: bold;
+            }
+            &__github{
+              margin-bottom: 5px;
+              font-size: 12px;
+              font-weight: bold;
+
+            }
+
+            &__more-detail{
+
+              &__contributor{
+                font-size: 9px;
+                color: gray;
+
+                &__name{}
+                &__date{}
+                &__tags{
+                  display: flex;
+                  margin-top: 5px;
+
+                  &__tag{
+                    margin-right: 5px;
+                    padding: 4px;
+                    background-color: black;
+                    // border:solid 1px #eee;
+                    border-radius: 2px;
+                    color: #FFFFFF;
+                  }
+                }
+                
+              }
+
+            }
+          }
+
+          &__like-info{
+            font-size: 10px;
+
+            .liked-icon{
+              font-size: 15px;
+              color: rgb(255, 20, 90);
+              text-decoration: none;
+            }
+
+            .like-icon{
+              font-size: 15px;
+              color: black;
+              text-decoration: none;
+            }
+          }
+        }
+
+        &__content{
+          padding: 10px 0;
+          font-size: 13px;
+
+          &__item{
+          }
+          &__text{
+            padding: 0 9px;
+          }
+        }
+      }
+
+      &__code{
+        margin: 0 10px 10px;
+        padding-top: 10px;
+        border-top: solid 1px #eee;
+
+        &__item{
+          font-size: 14px;
+        }
+        &__info{
+          padding: 9px;
+          border-radius: 5px;
+          background-color: #FFFFFF;
+          font-size: 13px;
+        }
+      }
+    }
+  }
+  &__comments{
+    width: 420px;
+    margin-right: 35px;
+    background-color: #FFFFFF;
+    border: solid 1px #eee;
+  }
+}

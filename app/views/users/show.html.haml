@@ -1,0 +1,21 @@
+-# ユーザーの詳細ページでそのユーザーが誰に対していいねしているのかどうかを表示
+ユーザー詳細ページ
+%h3= @user.nickname
+=link_to edit_user_path(current_user) do
+  =image_tag "https://demo.a-blogcms.jp/media/001/201902/1c35033abff55e4664a216314d599201.png", class: "profile-image"
+%h2 投稿内容
+- @user.posts.each do |post|
+  = link_to post_path(post.id) do
+    = post.text
+  %hr/
+%h3 いいねしている投稿
+- if @user.liked_posts.present?
+  - @user.liked_posts.each do |post|
+    %li
+      = post.user.nickname
+      = link_to post_path(post.id) do
+        = post.text
+- else
+  まだいいねしている投稿はありません。
+= link_to "ユーザー一覧へ", users_path
+= link_to "ホームへ戻る", posts_path

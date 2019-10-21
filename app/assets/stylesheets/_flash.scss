@@ -1,0 +1,22 @@
+.notification {
+  position: relative;
+  .notice {
+    position: absolute;    // noticeの表示がされる度に画面が凹むのを解消するため、positionを設定
+    height: 60px;
+    width: 100%;
+    background:rgba(255, 241, 0, 0.9);
+    line-height: 60px;
+    font-size:18px;
+    color: $black;
+    text-align: center;
+  }
+
+  .alert {
+    height: 60px;
+    background:rgba(250, 50, 5, 0.9);
+    line-height: 60px;
+    font-size:18px;
+    color: $black;
+    text-align: center;
+  }
+}

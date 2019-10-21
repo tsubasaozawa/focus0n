@@ -1,0 +1,68 @@
+= render partial: "shared/header"
+.wrapper
+  .show-contents
+    .show-contents__items
+      .show-contents__items__image
+        - if @post.image.file.content_type.include?('image/')
+          = image_tag @post.image.url, width: "100%", height: "100%", class: "show-image"
+        - else
+          = video_tag @post.image.url, width: "100%", height: "100%", class: "show-image", |
+            controls: true, autobuffer: true
+      .show-contents__items__detail
+        .show-contents__items__detail__upper-info
+          .show-contents__items__detail__upper-info__top
+            .show-contents__items__detail__upper-info__top__box
+              .show-contents__items__detail__upper-info__top__box__title
+                = @post.title
+              .show-contents__items__detail__upper-info__top__box__github
+                GitHub URL：
+                = @post.github_url
+              .show-contents__items__detail__upper-info__top__box__more-detail
+                .show-contents__items__detail__upper-info__top__box__more-detail__contributor
+                  .show-contents__items__detail__upper-info__top__box__more-detail__contributor__name
+                    投稿者：
+                    = @post.user.nickname
+                  .show-contents__items__detail__upper-info__top__box__more-detail__contributor__date
+                    投稿日時：
+                    = @post.created_at.strftime("%Y/%m/%d %H:%M")
+                  .show-contents__items__detail__upper-info__top__box__more-detail__contributor__tags
+                    .show-contents__items__detail__upper-info__top__box__more-detail__contributor__tags__tag
+                      タグ欄
+
+            .show-contents__items__detail__upper-info__top__like-info
+              #{@post.likes.count}人がいいねしています！
+              - if user_signed_in?
+                - if current_user.already_liked?(@post)
+                  = link_to post_like_path(@post), method: :delete do
+                    = fa_icon "heart", class: "liked-icon"
+                - else
+                  = link_to post_likes_path(@post), method: :post do
+                    -# link_toでデータベースに情報を入れる際はmethod: :postを記載
+                    = fa_icon "heart-o", class: "like-icon"
+              - else
+                = link_to new_user_session_path do
+                  = fa_icon "heart-o", class: "like-icon"
+              %br
+              いいねしたユーザー
+              - @post.liked_users.each do |user|
+                %li= user.nickname
+          .show-contents__items__detail__upper-info__content
+            .show-contents__items__detail__upper-info__content__item
+              ＜投稿詳細＞
+            .show-contents__items__detail__upper-info__content__text
+              = @post.text
+
+        .show-contents__items__detail__code
+          .show-contents__items__detail__code__item
+            ＜code＞
+          .show-contents__items__detail__code__info
+            = markdown(@post.code).html_safe
+
+    .show-contents__comments
+      .comment-form
+        = form_with model: @comment, url: post_comments_path(@post) do |f|
+          -# ネストさせたページでform(form_with)を使用する場合、urlの指定（url: post_comments_path(@post)）と、どのモデルを通してformの情報を送るのか（model: @comment）必ず指定。
+          = f.text_area :text, maxlength: 200 ,cols: 40, rows: 1, class: 'input-box__text', placeholder: 'コメント入力（200文字まで）'
+          = f.submit 'Send', class: 'input-box__submit'
+
+  = link_to "ホームへ戻る", posts_path

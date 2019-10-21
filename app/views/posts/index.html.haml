@@ -1,0 +1,9 @@
+= render partial: "shared/header" , colection: @post
+.wrapper
+  .form-box
+    = render partial: "form" ,colection: @post
+  .main-contents
+    .posts
+      = render partial: "post" , colection: @posts
+    .right-sidebar
+      = render partial: "sidebar" , colection: @posts

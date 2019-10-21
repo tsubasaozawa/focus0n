@@ -1,0 +1,32 @@
+.main-header
+  - if user_signed_in?
+    .main-header__user-name
+      .main-header__user-name__image
+        = image_tag "https://demo.a-blogcms.jp/media/001/201902/1c35033abff55e4664a216314d599201.png", class: "index-profile-image"
+      .main-header__user-name__text
+        = current_user.nickname
+  
+  - else
+  .main-header__new-post
+    .main-header__new-post__image
+      = fa_icon 'camera', class: 'icon'
+    .main-header__new-post__logo
+      New！!
+
+  .main-header__ranking
+    .main-header__ranking__box
+      .main-header__ranking__box__title
+        いいねランキング：
+      .main-header__ranking__box__list
+        - @ranking.each.with_index(1) do |post, i|
+          = link_to post_path(post.id), class: "ranking-detail" do
+            .ranking-detail__text
+              = i
+              位：
+              = post.text
+            .ranking-detail__image
+              - if post.image.file.content_type.include?('image/')
+                = image_tag post.image.url, width: "110px", height: "80px"
+              - else
+                = video_tag post.image.url, width: "110px", height: "80px", |
+                  controls: true, autobuffer: true

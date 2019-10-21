@@ -1,0 +1,22 @@
+.form
+  .form__close-btn
+    = fa_icon 'times', class: 'icon'
+  = form_for [@post] do |f|
+    .input-box
+      = f.label :image, class: 'input-box__image' do
+        = f.file_field :image, accept: 'image/jpeg,image/gif,image/png,video/*', class: 'input-box__image__file'
+        - if @post.image.present?
+          -# - if @post.image.file.content_type.include?('image/')
+          -#   = image_tag @post.image.url, width: "100%", height: "100%", id: :img_prev
+          -# - else
+          -#   = video_tag @post.image.url, width: "100%", height: "100%", id: :img_prev |
+          -#     controls: true, autobuffer: true
+          = image_tag @post.image, id: :img_prev
+        - else
+          = image_tag "https://demo.a-blogcms.jp/media/001/201902/1c35033abff55e4664a216314d599201.png", id: :img_prev
+      = f.text_field :title, maxlength: 50, class: 'input-box__text', placeholder: 'タイトルを入力してください(50文字まで)'
+      = f.text_field :github_url, class: 'input-box__text', placeholder: 'GithubのURLを入力してください'
+      = f.text_area :text, maxlength: 500, class: 'input-box__text', placeholder: 'メッセージを入力してください(500文字まで)'
+      = f.text_area :code, class: 'input-box__text', placeholder: 'コードを入力してください'
+
+    = f.submit 'Send', class: 'submit-btn'

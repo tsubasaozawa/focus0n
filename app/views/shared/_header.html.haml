@@ -1,0 +1,41 @@
+.header
+  .header-box
+    .left-header
+      .logo
+        = link_to root_path, class: "top-page" do
+          focus0n
+      .search-field
+        %input.search-box
+        = check_box_tag :test1
+        = label_tag :test1, "Qiitaの記事を含む", class: "qiita-check"
+    .right-header
+      - if user_signed_in?
+        .like-list
+          = link_to "users/#{current_user.id}/liked", class: "like-list-icon" do
+            = fa_icon 'heart-o'
+        .mypage
+          = link_to user_path(current_user.id), class: "user-icon" do
+            = fa_icon 'user-o'
+        .users-list
+          = link_to users_path, class: "users-icon" do
+            =fa_icon 'users'
+        .top-menu
+          Menu
+          .top-menu__select-list
+            %ul
+              %li
+                =link_to "" ,class: "select-btn" do
+                  言語から探す
+              %li
+                =link_to "" ,class: "select-btn" do
+                  機能から探す
+        .signout
+          = link_to destroy_user_session_path, method: :delete, class: "signout-btn" do
+            SignOut
+      - else
+        .login
+          = link_to new_user_session_path, class: "login-btn" do
+            ログイン
+        .new-account
+          = link_to new_user_registration_path, class: "new-account-btn" do
+            新規登録

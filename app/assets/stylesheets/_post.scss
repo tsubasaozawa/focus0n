@@ -1,0 +1,159 @@
+.posts{
+  width: 650px;
+  margin: 0 auto;
+
+  .posts-title{
+    margin: 10px 0;
+  }
+
+  .posts-contents{
+    display: flex;
+    flex-wrap:wrap;
+    height: 100%;
+    min-height: 100vh;
+    overflow: scroll;
+    // padding: 46px 40px;
+
+    .post{
+      height: 350px;
+      width: 300px;
+      overflow: hidden;
+      margin:0 25px 25px 0;
+      border: solid 1px #eee;
+      border-radius: 5px ;
+      background-color: #FFFFFF;
+
+      .post__box{
+          height: 100%;
+      
+
+        &__upper-info{
+          display: flex;
+          justify-content: space-between;
+          margin: 5px 10px;
+          font-size: 10px;
+        
+
+          &__user{
+            // font-weight: bold;
+          }
+          &__icon{
+            right: 0;
+          }
+        }
+
+        &__main-info{
+          // height: 500px;
+          font-size: 15px;
+        
+
+          &__image{
+            height: 230px;
+            width: 100%;
+            object-fit: cover;
+
+            .index-image{
+              &:focus{
+                outline: none;
+
+              }
+            }
+          }
+        }
+
+        &__middle-info{
+          display: flex;
+          justify-content: space-between;
+          margin: 5px 15px;
+          font-size: 14px;
+          color: black;
+          // text-align: right;
+          text-decoration: none;
+
+          &__right{
+            display: -webkit-flex;
+            display: flex;
+            -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
+            align-items: center; /* 縦方向中央揃え */
+            -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
+            justify-content: center; /* 横方向中央揃え */
+            font-size: 10px;
+          }
+
+          &__left{
+
+            .comment-icon{
+              margin: 0 3px;
+              font-size: 15px;
+              color: black;
+              text-decoration: none;
+            }
+
+            .liked-icon{
+              margin: 0 3px;
+              font-size: 15px;
+              color: rgb(255, 20, 90);
+              text-decoration: none;
+            }
+
+            .like-icon{
+              margin: 0 3px;
+              font-size: 15px;
+              color: black;
+              text-decoration: none;
+            }
+          }
+          
+        }
+
+        &__lower-info{
+          margin: 0 20px;
+
+
+            &__text{
+              font-size: 10px;
+              margin-bottom: 5px;
+
+            }
+
+          &__code{
+            display: flex;
+            justify-content: space-between;
+            // display: flex;
+            // justify-content: center;
+            // align-items: center;
+            // margin: 2.5px 0;
+            font-size: 10px;
+
+            &__date{
+              color: #999999;
+            }
+
+            &__detail{
+              // text-align: right;
+              cursor: pointer;
+
+              .code-btn{
+                color: black;
+                text-decoration: none;
+              }
+
+            }
+          }
+        }
+
+        &__comment-input{
+          border-top: solid 1px #eee;
+
+          &__box{
+            width: 100%;
+            border: 0;
+            padding: 10px 15px;
+            outline: none;
+            font-size: 13px;
+          }
+        }
+      }
+    }
+  }
+}

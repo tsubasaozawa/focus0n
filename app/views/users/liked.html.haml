@@ -1,0 +1,7 @@
+お気に入りユーザー
+- if @users.present?
+  - @users.each do |user|
+    %li
+      = user.nickname
+- else
+  お気に入りユーザーはまだいません
