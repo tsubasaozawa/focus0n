@@ -26,8 +26,9 @@
                     投稿日時：
                     = @post.created_at.strftime("%Y/%m/%d %H:%M")
                   .show-contents__items__detail__upper-info__top__box__more-detail__contributor__tags
-                    .show-contents__items__detail__upper-info__top__box__more-detail__contributor__tags__tag
-                      タグ欄
+                    - @post.tags.each do |tag|
+                      .show-contents__items__detail__upper-info__top__box__more-detail__contributor__tags__tag
+                        = tag.tag
 
             .show-contents__items__detail__upper-info__top__like-info
               #{@post.likes.count}人がいいねしています！
@@ -59,10 +60,43 @@
             = markdown(@post.code).html_safe
 
     .show-contents__comments
-      .comment-form
-        = form_with model: @comment, url: post_comments_path(@post) do |f|
-          -# ネストさせたページでform(form_with)を使用する場合、urlの指定（url: post_comments_path(@post)）と、どのモデルを通してformの情報を送るのか（model: @comment）必ず指定。
-          = f.text_area :text, maxlength: 200 ,cols: 40, rows: 1, class: 'input-box__text', placeholder: 'コメント入力（200文字まで）'
-          = f.submit 'Send', class: 'input-box__submit'
+      - if user_signed_in? 
+        .comment-form
+          = form_with model: @comment, url: post_comments_path(@post), class: "comment-form__input-box" do |f|
+            -# ネストさせたページでform(form_with)を使用する場合、urlの指定（url: post_comments_path(@post)）と、どのモデルを通してformの情報を送るのか（model: @comment）必ず指定。
+            .comment-form__input-box__text-box
+              = f.text_area :text, maxlength: 200 , class: 'chat-box__text', id: 'chat-box__text', placeholder: 'コメント入力（200文字まで）'
+            .comment-form__input-box__submit-box
+              = f.submit '送信', class: 'chat-box__submit'
+      - else
+        .comment-form
+          .comment-form__input-box__text-box
+            メッセージ履歴
 
-  = link_to "ホームへ戻る", posts_path
+      .comment-views
+        - @comments.each do |comment|
+          - if comment.user.id == @post.user.id
+            .comment-views__detail-view{"data-comment-id": "#{comment.id}"}
+              .comment-views__detail-view__comment
+                .comment-views__detail-view__comment__text
+                  = comment.text
+                .comment-views__detail-view__comment__user-date
+                  .comment-views__detail-view__comment__user-date__user
+                    = comment.user.nickname
+                  .comment-views__detail-view__comment__user-date__date
+                    = comment.created_at.strftime("%Y/%m/%d")
+                  .comment-views__detail-view__comment__user-date__date-time
+                    = comment.created_at.strftime("%H:%M")
+                    
+          - else
+            .comment-views__detail-view-right{"data-comment-id": "#{comment.id}"}
+              .comment-views__detail-view-right__comment
+                .comment-views__detail-view-right__comment__user-date
+                  .comment-views__detail-view-right__comment__user-date__user
+                    = comment.user.nickname
+                  .comment-views__detail-view-right__comment__user-date__date
+                    = comment.created_at.strftime("%Y/%m/%d")
+                  .comment-views__detail-view-right__comment__user-date__date-time
+                    = comment.created_at.strftime("%H:%M")
+                .comment-views__detail-view-right__comment__text
+                  = comment.text

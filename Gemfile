@@ -78,3 +78,5 @@ gem 'redcarpet'
 gem 'coderay'
 
 gem 'jquery-ui-rails'
+
+gem 'rails-ujs'

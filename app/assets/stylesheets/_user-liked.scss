@@ -1,0 +1,71 @@
+.my-favorite{
+  display: flex;
+  min-height: calc(100vh - 100px);
+
+  &__post-users{
+    width: 250px;
+    padding: 0 15px;
+    border-right: solid 1px gray;
+    list-style: none;
+
+    &__item{
+      margin-bottom: 5px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    &__name{
+      padding: 0 15px;
+      font-size: 12px;
+
+      li{
+        margin-bottom: 5px;
+      }
+    }
+  }
+
+  &__post-lists{
+    width: 100%;
+    margin: 0 20px;
+
+    &__item{
+      margin-bottom: 5px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    &__favorite-list{
+      font-size: 14px;
+
+      &__detail{
+        padding: 10px;
+        border-top: solid 2px #eee;
+
+        &__user-name{
+          margin-bottom: 5px;
+          font-weight: bold;
+        }
+
+        &__image{
+
+          &__show{
+            text-decoration: none;
+    
+            .users-post-image{
+              height: 200px;
+              width: 200px;
+              margin: 0 15px 15px 0;
+              object-fit: cover;
+    
+              &:focus{
+                outline: none;
+    
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+}

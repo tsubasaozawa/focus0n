@@ -1,0 +1,49 @@
+= render partial: "shared/header"
+.wrapper
+  .search-results
+    .search-results__list-item
+      検索結果一覧
+    .search-results__index
+      .search-results__index__lists
+        ＜サイト内＞
+        - @posts.each do |post|
+          .search-results__index__lists__list
+            .search-results__index__lists__list__text
+              = link_to post_path(post), class: "link2show-page" do
+                .search-results__index__lists__list__text__left-info
+                  .search-results__index__lists__list__text__left-info__user-nickname
+                    投稿者：
+                    = post.user.nickname
+                    ／  投稿日：
+                    = post.created_at.strftime("%Y/%m/%d")
+                  .search-results__index__lists__list__text__left-info__title
+                    .search-results__index__lists__list__text__left-info__title__item
+                      タイトル：
+                    .search-results__index__lists__list__text__left-info__title__detail
+                      = post.title
+                -# .search-results__index__lists__list__text__content
+                -#   .search-results__index__lists__list__text__content__item
+                -#     本文：
+                -#   .search-results__index__lists__list__text__content__main
+                -#     %p= post.text
+                -# .search-results__index__lists__list__text__detail
+                -#   .search-results__index__lists__list__text__detail__btn
+                -#     = link_to post_path(post), class: "search-results__index__lists__list__text__detail__btn__link" do
+                -#       ＋詳しい内容を確認
+      .search-results__index__lists-right
+        ＜Qiita＞
+        - @items.each do |item|
+          .search-results__index__lists-right__list
+            .search-results__index__lists-right__list__text
+              = link_to "#{item['url']}" ,class: "link2qiita" do
+                .search-results__index__lists-right__list__text__left-info
+                  .search-results__index__lists-right__list__text__left-info__user-nickname
+                    投稿者：
+                    = "#{item['user']['id']}"
+                    ／  投稿日：
+                    = "#{item['created_at']}"
+                  .search-results__index__lists-right__list__text__left-info__title
+                    .search-results__index__lists-right__list__text__left-info__title__item
+                      タイトル：
+                    .search-results__index__lists-right__list__text__left-info__title__detail
+                      = "#{item['title']}"

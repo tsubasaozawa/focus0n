@@ -15,6 +15,8 @@ module PostsHelper
           lang = 'css'
         when 'html'
           lang = 'html'
+        when 'js'
+          lang = 'javascript'
         when ''
           lang = 'md'
         else

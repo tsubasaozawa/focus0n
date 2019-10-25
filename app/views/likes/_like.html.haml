@@ -1,0 +1,13 @@
+.post__box__middle-info__left
+  - if user_signed_in?
+    = link_to post_path(post) , class: "index2comment" do
+      = fa_icon "comment-o", class: "comment-icon"
+    - if current_user.already_liked?(post)
+      = link_to post_like_path(post,current_user), method: :delete, remote: true, class: "liked-icon" do
+        = fa_icon "heart"
+    - else
+      = link_to post_likes_path(post), method: :post, remote: true, class: "like-icon" do
+        = fa_icon "heart-o"
+  - else
+    = link_to new_user_session_path, class: "like-icon" do
+      = fa_icon "heart-o"

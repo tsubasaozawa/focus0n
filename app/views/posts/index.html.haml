@@ -1,7 +1,11 @@
 = render partial: "shared/header" , colection: @post
+
 .wrapper
-  .form-box
-    = render partial: "form" ,colection: @post
+  .top-image
+    = image_tag "top-image2.jpg", class: "top-image__file"
+    .top-image-cover
+    .top-image-text
+      "code"をもっと"目"で楽しめるものに
   .main-contents
     .posts
       = render partial: "post" , colection: @posts

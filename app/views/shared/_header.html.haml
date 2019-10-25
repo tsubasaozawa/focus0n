@@ -3,11 +3,15 @@
     .left-header
       .logo
         = link_to root_path, class: "top-page" do
+          = fa_icon 'film'
           focus0n
       .search-field
-        %input.search-box
-        = check_box_tag :test1
-        = label_tag :test1, "Qiitaの記事を含む", class: "qiita-check"
+        = form_with url: "/posts/search", method: :get, local: true, class: "search-box" do |f|
+          = f.text_field :keyword, placeholder: ' キーワードを入力してください', class: "input-text" 
+          %button.btn-search{title: "検索", type: "submit"}
+            = fa_icon "search", class: "search-form__icon"
+          -# = check_box_tag :test1
+          -# = label_tag :test1, "Qiitaの記事を含む", class: "qiita-check"
     .right-header
       - if user_signed_in?
         .like-list
@@ -16,22 +20,34 @@
         .mypage
           = link_to user_path(current_user.id), class: "user-icon" do
             = fa_icon 'user-o'
-        .users-list
-          = link_to users_path, class: "users-icon" do
-            =fa_icon 'users'
+        -# .users-list
+        -#   = link_to users_path, class: "users-icon" do
+        -#     =fa_icon 'users'
         .top-menu
-          Menu
-          .top-menu__select-list
-            %ul
+          .top-menu__select-btn
+            Menu
+          .left-menu
+            %ul.left-searchlist
               %li
-                =link_to "" ,class: "select-btn" do
-                  言語から探す
+                %p.left-searchlist__item 言語から探す
+                %ul.left-searchlist__menu
+                  %li.left-searchlist__menu1-1 ・HTML
+                  %li.left-searchlist__menu1-2 ・CSS
+                  %li.left-searchlist__menu1-3 ・Ruby
+                  %li.left-searchlist__menu1-3 ・Go
+                  %li.left-searchlist__menu1-3 ・PHP
+                  %li.left-searchlist__menu1-3 ・Python
               %li
-                =link_to "" ,class: "select-btn" do
-                  機能から探す
+                %p.left-searchlist__item 機能から探す
+                %ul.left-searchlist__menu
+                  %li.left-searchlist__menu2-1 ・ログイン機能
+                  %li.left-searchlist__menu2-2 ・ページネーション機能
+                  %li.left-searchlist__menu2-3 ・プレビュー機能
+
         .signout
           = link_to destroy_user_session_path, method: :delete, class: "signout-btn" do
             SignOut
+
       - else
         .login
           = link_to new_user_session_path, class: "login-btn" do

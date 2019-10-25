@@ -1,9 +1,53 @@
+.top-image{
+  position: relative;
+
+  &__file{
+    height: 400px;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .top-image-cover{
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform : translateY(-50%);
+    content: "";
+    padding: 1% 0 1% 8%;
+    height: 100%;
+    width: 100%;
+    // color: #FFFFFF;
+    // font-size: 125%;
+    // // font-weight: bold;
+    background: -webkit-linear-gradient(left, rgba(1, 1, 1, 0.5) 20%, black 100%);
+  }
+
+  .top-image-text{
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform : translateY(-50%);
+    content: "";
+    padding: 1% 3% 1% 8%;
+    height: 100%;
+    width: 100%;
+    color: #FFFFFF;
+    text-align: right;
+    font-size: 25px;
+    display: flex;
+    // justify-content: center;
+    align-items: center;
+    // // font-weight: bold;
+    // background: -webkit-linear-gradient(left, rgba(1, 1, 1, 0) 50%, black 90%);
+  }
+}
+
 .posts{
   width: 650px;
   margin: 0 auto;
 
   .posts-title{
-    margin: 10px 0;
+    margin: 16px 0 10px;
   }
 
   .posts-contents{
@@ -82,12 +126,16 @@
 
           &__left{
 
-            .comment-icon{
-              margin: 0 3px;
-              font-size: 15px;
+            .index2comment{
               color: black;
               text-decoration: none;
             }
+
+            .comment-icon{
+              margin: 0 3px;
+              font-size: 15px;
+            }
+            
 
             .liked-icon{
               margin: 0 3px;
@@ -110,9 +158,10 @@
           margin: 0 20px;
 
 
-            &__text{
-              font-size: 10px;
+            &__title{
               margin-bottom: 5px;
+              font-size: 10px;
+              font-weight: bold;
 
             }
 
@@ -136,6 +185,13 @@
               .code-btn{
                 color: black;
                 text-decoration: none;
+
+                &:hover {
+                  padding: 5px;
+                  border-radius: 2px;
+                  background-color: black;
+                  color: #FFFFFF;
+                }
               }
 
             }

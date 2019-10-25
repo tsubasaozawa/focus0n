@@ -1,0 +1,75 @@
+= render partial: "shared/header"
+.wrapper
+  .form-box
+    = form_for [@post] do |f|
+      .form
+        .form__left-inputbox
+          .form__left-inputbox__image
+            = f.label :image, class: 'form__left-inputbox__image__box' do
+              = f.file_field :image, accept: 'image/jpeg,image/gif,image/png,video/*', class: 'form__left-inputbox__image__box__file'
+              #img_prev.pre-box
+              -# .form__left-inputbox__image__box__select
+              -#   .form__left-inputbox__image__box__select__box
+              -#     #select-movie.form__left-inputbox__image__box__select__box__movie
+              -#       動画選択
+              -#     #select-image.form__left-inputbox__image__box__select__box__image
+              -#       画像選択
+
+              -# - if @post.image.present?
+              -#   - if post.image.file.content_type.include?('image/')
+              -#     = image_tag post.image.url, width: "100%", height: "100%", class: "index-image"
+              -#   - else
+              -#     = video_tag post.image.url, width: "100%", height: "100%", class: "index-image", |
+              -#       controls: true, autobuffer: true
+              -# - else
+              -#   = image_tag "https://demo.a-blogcms.jp/media/001/201902/1c35033abff55e4664a216314d599201.png", id: :img_prev
+          .form__left-inputbox__title
+            タイトル
+            = f.text_area :title, maxlength: 50, class: 'form__left-inputbox__title__box', placeholder: 'タイトルを入力してください(50文字まで)'
+          .form__left-inputbox__github
+            GitHub URL
+            = f.text_field :github_url, class: 'form__left-inputbox__github__box', placeholder: 'GithubのURLを入力してください'
+          .form__left-inputbox__tag
+            = f.label "タグ  ※以下、自由にタグを入力してください", class: "form__left-inputbox__tag__label"
+            %ul#article-tags
+          .form__left-inputbox__text
+            内容詳細
+            = f.text_area :text, maxlength: 500, class: 'form__left-inputbox__text__box', placeholder: 'メッセージを入力してください(500文字まで)'
+        .form__right-inputbox
+          .form__right-inputbox__code
+            コード
+            = f.text_area :code, class: 'form__right-inputbox__code__box', placeholder: 'マークダウン方式でコードを記入してください'
+          .form__right-inputbox__code-explanation
+            マークダウン方式について（プログラムを記述する場合）
+            .form__right-inputbox__code-explanation__box
+              .form__right-inputbox__code-explanation__box__left
+                ＜プログラムの記載例＞
+                %br
+                ```rb
+                %br
+                num = 0
+                %br
+                while num < 2 do
+                %br
+                print("num = ", num)
+                %br
+                end
+                %br
+                print("End")
+                %br
+                ```
+              .form__right-inputbox__code-explanation__box__right
+                ＜言語の記載例＞
+                %br
+                Ruby = rb
+                %br
+                PHP = php
+                %br
+                yaml = yml
+                %br
+                CSS = css
+                %br
+                HTML = html  など
+
+          .submit-box
+            = f.submit '確認して送信', class: 'submit-btn'

@@ -1,4 +1,99 @@
-.profile-image{
-  height: 150px;
-  width: 200px;
+.my-page{
+  width: 1000px;
+  margin:0 auto;
+
+  &__user-prof{
+    margin: 20px 0 30px;
+
+    &__detail{
+      display: flex;
+      justify-content: center;
+
+      &__image{
+        margin-right: 20px;
+
+        .profile-image{
+          height: 130px;
+          width: 130px;
+          object-fit: cover;
+          cursor: pointer;
+        }
+      }
+
+      &__text{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &__box{
+        
+          &__users-info{
+            margin-bottom: 15px;
+            font-weight: bold;
+
+            .users-info-edit{
+              margin-left: 10px;
+              color: black;
+              text-decoration: none;
+            }
+            .user-cogs{
+              padding: 5px;
+              border: solid 1px gray;
+              border-radius: 5px;
+
+              &:hover{
+                border: solid 1px black;
+                background: black;
+                color: #FFFFFF;
+              }
+            }
+          }
+
+          &__users-status{
+            display: flex;
+            font-size: 14px;
+
+            &__posts-count{
+              margin-right: 15px;
+            }
+
+            &__liked-posts{
+              margin-right: 15px;
+            }
+
+            &__liked-users{
+              margin-right: 15px;
+            }
+          }
+        }
+      }
+    }
+  }
+  &__users-posts{
+    margin: 15px 0;
+    padding-top: 20px;
+    border-top: solid 1px #eeeeee;
+    
+    &__item{
+      margin-bottom: 10px;
+    }
+    &__post{
+
+      &__show{
+        text-decoration: none;
+
+        .users-post-image{
+          height: 230px;
+          width: 230px;
+          margin: 0 15px 15px 0;
+          object-fit: cover;
+
+          &:focus{
+            outline: none;
+
+          }
+        }
+      }
+    }
+  }
 }

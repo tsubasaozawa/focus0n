@@ -1,22 +1,31 @@
 .right-sidebar{
   height: 100vh;
-  width: 200px;
+  width: 330px;
   margin: 0 auto;
 
   .main-header{
+    // width: 100%;
+
+    .index2mypage{
+      color: black;
+      text-decoration: none;
+
+    }
+
 
     &__user-name{
-      position: fixed;
+      // position: fixed;
       display: flex;
       height: 40px;
       line-height: 39px;
       // width: 200px;
+      margin: 5px 0;
       padding: 0 15px;
       color: black;
       transition: .2s;
-      cursor: pointer;
 
       &__image{
+        cursor: pointer;
 
         .index-profile-image{
           height: 30px;
@@ -25,57 +34,79 @@
         }
       }
       &__text{
-        margin-left: 10px;
+        padding-left: 10px;
         font-size: 13px;
+        cursor: pointer;
       }
     }
 
     &__new-post{
       position: fixed;
-      top: 120px;
-      flex-direction: column;
-      height: 40px;
+      right: 50px;
+      bottom: 60px;
+      display: flex;
+      -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
+      align-items: center; /* 縦方向中央揃え */
+      -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
+      justify-content: center; /* 横方向中央揃え */
       line-height: 39px;
-      width: 200px;
+      height: 150px;
+      width: 150px;
       padding: 0 20px;
       border: solid 1px #eee;
-      border-radius: 5px ;
-      background-color: #FFFFFF;
-      color: black;
+      border-radius: 50% ;
+      box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
+      border-bottom: solid 3px gray;
+      background-color: black;
+      overflow: hidden;
+      color: #FFFFFF;
+      font-weight: bold;
       transition: .2s;
       cursor: pointer;
 
       &__image{
-        float: left;
-        margin-left: 30px;
+        // float: left;
+        margin-right: 10px;
 
       }
       &__logo{
-        float: right;
-        margin-right: 40px;
+        // text-decoration: none;
+        // float: right;
+        // margin-right: 40px;
+
+        .new-post{
+          color: #FFFFFF;
+          text-decoration: none;
+        }
       }
 
       &:hover {
-        background-color: black;
-        color: white;
+        background-color: peru;
+      }
+  
+      &:active {
+        -webkit-transform: translateY(2px);
+        transform: translateY(2px);
+        box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
+        border-bottom: none;
       }
     }
 
     &__ranking{
-      position: fixed;
-      top: 170px;
+      // position: fixed;
+      // top: 120px;
       display: flex;
       flex-direction: column;
       z-index: 2;
       min-height: 180px;
-      width: 200px;
-      padding: 0 20px;
+      width: 100%;
+      padding: 0 15px;
       border: solid 1px #eee;
       border-radius: 5px ;
       background-color: #FFFFFF;
 
       &__box{
-        margin-top: 15px;
+        margin: 15px 0;
         font-size: 10px;
       
 
@@ -88,51 +119,54 @@
         }
 
         &__list{
-          margin-bottom: 10px;
           color: #333333;
           list-style: none;
 
           .ranking-detail{
             // font-size: 11px;
+            display: flex;
+            margin: 7px 0;
+            border-bottom: solid 1px #eee;
             color: black;
             text-decoration: none;
 
-            .ranking-detail__text{
-              margin-bottom: 4px;
+
+            &__rank{
+              display: flex;
+              -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
+              align-items: center; /* 縦方向中央揃え */
+              -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
+              justify-content: center; /* 横方向中央揃え */
+              margin-right: 10px;
+              font-size: 11px;
               font-weight: bold;
+              text-align: center;
             }
 
-            .ranking-detail__image{
+            &__image{
+              margin-right: 7px;
               text-align: center;
+            }
+
+            &__text{
+
+              &__title{
+                font-size: 11px;
+                font-weight: bold;
+
+              }
+              &__date{
+                color: gray;
+                font-size: 5px;
+
+              }
+              &__like-count{
+                color: gray;
+                font-size: 5px;
+              }
             }
           }
         
-        }
-      }
-
-      &__edit-box{
-        margin-bottom: 15px;
-
-        &__edit-btn{
-
-            .edit_id{
-              text-decoration: none;
-              font-size: 14px;
-              width: 50px;
-              float: right;
-              border-radius: 3px ;
-              font-weight: bold;
-              padding: 0.25em 0.5em;
-              background: #ECECEC;
-              text-align: center;
-              color: #333333;
-              transition: .2s;
-
-              &:hover {
-                background: #fa8072;
-                color: white;
-              }
-            }
         }
       }
     }

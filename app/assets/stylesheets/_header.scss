@@ -29,19 +29,41 @@ $font-color:#FFFFFF;
       }
       .search-field{
         font-size: 75%;
-        margin: 0 30px;
+        margin: 0 20px;
 
         .search-box{
-          height: 45%;
-          width: 190px;
-          margin-right: 15px;
-          outline: none;
-          border:solid 1px gray;
-          border-radius: 5px;
-        }
+          position: relative;
 
-        .qiita-check{
-          font-size: 11px;
+          .input-text{
+            height: 27px;
+            width: 210px;
+            margin-right: 10px;
+            padding: 0 25px 0 5px;
+            outline: none;
+            border:solid 1px gray;
+            border-radius: 5px;
+          
+          }
+
+          .btn-search{
+            position: absolute;
+            top: 23px;
+            right: 15px;
+            border: none;
+            outline: none;
+            cursor: pointer;
+
+            .search-form__icon{
+            }
+          }
+
+          .qiita-check-box{
+            margin-left: 5px;
+          }
+
+          .qiita-check{
+            font-size: 11px;
+          }
         }
       }
     }
@@ -57,36 +79,75 @@ $font-color:#FFFFFF;
         margin: $header-right-margin;
 
         .like-list-icon{
-          font-size: 17px;
+          font-size: 19px;
           color: black;
           text-decoration: none;
+          transition: .2s;
+
+          &:hover{
+            font-size: 25px;
+            font-weight: bold;
+          }
         }  
       }
       .top-menu{
         position: relative;
         margin: $header-right-margin;
         z-index: 6;
+        transition: .2s;
         cursor: pointer;
 
-        &__select-list{
+        &:hover{
+          font-size: 17px;
+          // font-weight: bold;
+        }
+
+        &__select-btn{}
+
+        .left-menu{
           position: absolute;
-          bottom: -55px;
+          position: fixed;
           display: none;
-          width: 210px;
-          z-index: 3;
-  
-          ul{
-            li{
-              line-height: 30px;
-              background: rgba(1,1,1,0.8);
-              margin-bottom: 3px;
-              padding-left: 10px;
-  
-              .select-btn{
-                font-size: 12px;
-                color: #FFFFFF;
-                text-decoration: none;
+          width: 160px;
+          background-color: black;
+          font-size: 12px;
+          color: #FFFFFF;
+          line-height: 20px;
+          z-index: 10;
+        
+          .left-searchlist{
+            // margin: 15px 0;
+            
+            p{
+              cursor: pointer;
+              padding: 5px 10px;
+            }
+        
+            &__item{
+              // border-bottom: solid 1px gray;
+              // transition: .2s;
+              // padding: 0 10px;
+              cursor: pointer;
+              
+              &:hover{
+                background-color: peru;
+                font-weight: bold;
               }
+            }
+            &__menu{
+              display: none;
+              padding: 0 10px;
+        
+              li{
+                padding: 5px 0;
+                cursor: pointer;
+        
+                &:hover{
+                  border-bottom: solid 1.5px gray;
+                  font-weight: bold;
+                }
+              }
+        
             }
           }
         }
@@ -99,6 +160,12 @@ $font-color:#FFFFFF;
         .signout-btn{
           color: $header-color;
           text-decoration: none;
+          transition: .2s;
+
+          &:hover{
+            font-size: 17px;
+            // font-weight: bold;
+          }
         }
       }
       .mypage{
@@ -108,6 +175,12 @@ $font-color:#FFFFFF;
           font-size: 19px;
           color: black;
           text-decoration: none;
+          transition: .2s;
+
+          &:hover{
+            font-size: 25px;
+            font-weight: bold;
+          }
 
         }
       }
@@ -128,92 +201,29 @@ $font-color:#FFFFFF;
         .login-btn{
           color: black;
           text-decoration: none;
+          transition: .2s;
+
+          &:hover{
+            font-size: 17px;
+            // font-weight: bold;
+          }
         }
       }
       .new-account{
         margin: $header-right-margin;
+
         .new-account-btn{
           color: black;
           text-decoration: none;
+          transition: .2s;
+
+          &:hover{
+            font-size: 17px;
+            // font-weight: bold;
+          }
         }
       }
 
     }
   }
-  // .main-menu-side{
-  //   position: fixed;
-  //   top: 125px;
-  //   left: 3.5%;
-  //   display: flex;
-  //   display: none;
-  //   flex-direction: column;
-  //   z-index: 2;
-  //   min-height: 180px;
-  //   width: 200px;
-  //   padding: 0 20px;
-  //   border: solid 1px #eee;
-  //   border-radius: 5px ;
-  //   background: rgba(1, 1, 1, 0.8);
-  //   color: $font-color;
-
-  //     a{
-  //       text-decoration: none;
-  //       color: $font-color;
-  //     }
-
-  //     .groups{
-  //       &__menu-close-btn{
-  //         margin: 7px 0;
-  //         text-align: right;
-  //         cursor: pointer;
-  //       }
-
-  //       &__box-menu{
-  //         margin-bottom: 8px;
-  //         font-size: 13px;
-
-  //         &:hover {
-  //           border-bottom: solid 1px #FFFFFF;
-  //         }
-  //       }
-
-  //       &__search-title{
-  //         margin-bottom: 8px;
-  //         font-size: 13px;
-  //         cursor: pointer;
-
-  //         &:hover {
-  //           border-bottom: solid 1px #FFFFFF;
-  //         }
-            
-  //       }
-
-  //       .group{
-  //         display: none;
-  //         margin-bottom: 8px;
-  //         color:$font-color;
-  //         font-size: 12px;
-  //         // border-bottom: solid 1px #FFFFFF;
-
-  //         &__group-name{
-  //           font-size: 11px;
-  //           // margin: 0 0 8px 5px;
-  //         }
-
-  //         &__latest-post{
-  //           font-size: 11px;
-  //         }
-  //       }
-
-  //       .top-index{
-  //         margin-bottom: 15px;
-  //         font-size: 13px;
-
-  //         &:hover {
-  //           border-bottom: solid 1px #FFFFFF;
-  //         }
-        
-  //       }
-  //     }
-  // }
 }

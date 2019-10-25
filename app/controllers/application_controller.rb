@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :nickname])  # ※1
   end
+
+  include QiitaHelper
 end
 
 # ※1：deviseの初期状態ではサインアップ時にメールアドレスとパスワードのみを受け取るようにストロングパラメーターが設定されているため、

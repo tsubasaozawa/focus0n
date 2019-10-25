@@ -1,46 +1,53 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, only: [:create]
   def index
-    @posts = Post.all.order(created_at:"desc")
+    @posts = Post.all.order(created_at: "desc")
     @post = Post.new
     post_ids = Like.group(:post_id).order('count_post_id DESC').limit(5).count(:post_id).keys
     @ranking = post_ids.map { |id| Post.find(id) }
   end
 
+  def new
+    @post = Post.new
+  end
+
+  def search
+    @posts = Post.joins(:tags).where('title LIKE(?) OR text LIKE(?) OR tag LIKE(?)', "%#{params[:keyword]}%","%#{params[:keyword]}%","%#{params[:keyword]}%").limit(20).order(created_at:"desc")
+    
+    query = params[:keyword] # 参考 検索時に利用できるオプション
+    status, next_page, @items = QiitaApiManager.search(query)
+    # binding.pry
+  end
+
   def show
     @post = Post.find(params[:id])
-    @comments = @post.comments.includes(:user)
+    @comments = @post.comments.includes(:user).limit(15).order(created_at: "desc")
   end
 
   def create
-    @post = Post.new(post_params)
-    @post.user_id = current_user.id
+    @post = current_user.posts.build(post_params)
+    category_list = params[:category_list].split(",")
+    # binding.pry
     if @post.save
-      redirect_back(fallback_location: root_path)
+      @post.save_categories(category_list)
+      redirect_to root_path
     else
-      redirect_back(fallback_location: root_path)
+      render 'posts/new'
     end
   end
 
-  def save_categories(categories)
-    current_categories = self.tags.pluck(:tag) unless self.tags.nil?
-    old_categories = current_categories - categories
-    new_categories = categories - current_categories
-
-    # Destroy old taggings:
-    old_categories.each do |old_name|
-      self.tags.delete Tags.find_by(tag:old_name)
-    end
-
-    # Create new taggings:
-    new_categories.each do |new_name|
-      post_tag = Tag.find_or_create_by(tag:new_name)
-      self.tags << post_tag
-    end
-  end
+  # def create
+  #   @post = Post.new(post_params)
+  #   @post.user_id = current_user.id
+  #   if @post.save
+  #     redirect_back(fallback_location: root_path)
+  #   else
+  #     redirect_back(fallback_location: root_path)
+  #   end
+  # end
 
   private
   def post_params
-    params.require(:post).permit(:text, :code, :image, :title, :github_url)    # ストロングパラメーターを設定している場合、必要なカラムの情報を必ずpermitに追加する
+    params.require(:post).permit(:text, :code, :image, :title, :github_url, :category_list)    # ストロングパラメーターを設定している場合、必要なカラムの情報を必ずpermitに追加する
   end
 end

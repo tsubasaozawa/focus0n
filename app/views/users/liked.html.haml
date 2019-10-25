@@ -1,7 +1,37 @@
-お気に入りユーザー
-- if @users.present?
-  - @users.each do |user|
-    %li
-      = user.nickname
-- else
-  お気に入りユーザーはまだいません
+= render partial: "shared/header"
+.wrapper
+  .my-favorite
+    .my-favorite__post-users
+      .my-favorite__post-users__item
+        お気に入りユーザー
+      .my-favorite__post-users__name
+        - if @users.present?
+          - @users.each do |user|
+            - unless user.id == current_user.id
+              %li
+                #{user.nickname} さん
+        - else
+          まだお気に入りユーザーはいません
+      
+    .my-favorite__post-lists
+      .my-favorite__post-lists__item
+        いいね！済み記事
+      .my-favorite__post-lists__favorite-list
+        - if @users.present?
+          - @users.each do |user|
+            - unless user.id == current_user.id
+              .my-favorite__post-lists__favorite-list__detail
+                .my-favorite__post-lists__favorite-list__detail__user-name
+                  #{user.nickname} さんの投稿
+                .my-favorite__post-lists__favorite-list__detail__image
+                  - current_user.liked_posts.each do |post|
+                    - if post.user.id == user.id
+                      = link_to post_path(post.id) ,class: "my-favorite__post-lists__favorite-list__detail__image__show" do
+                        - if post.image.file.content_type.include?('image/')
+                          = image_tag post.image.url, width: "100%", height: "100%", class: "users-post-image"
+                        - else
+                          = video_tag post.image.url, width: "100%", height: "100%", class: "users-post-image", |
+                            controls: true, autobuffer: true
+
+        - else
+          まだいいねしている投稿はありません。
