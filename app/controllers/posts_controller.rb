@@ -14,9 +14,8 @@ class PostsController < ApplicationController
   def search
     @posts = Post.joins(:tags).where('title LIKE(?) OR text LIKE(?) OR tag LIKE(?)', "%#{params[:keyword]}%","%#{params[:keyword]}%","%#{params[:keyword]}%").limit(20).order(created_at:"desc")
     
-    query = params[:keyword] # 参考 検索時に利用できるオプション
+    query = params[:keyword]
     status, next_page, @items = QiitaApiManager.search(query)
-    # binding.pry
   end
 
   def show
@@ -27,7 +26,6 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.build(post_params)
     category_list = params[:category_list].split(",")
-    # binding.pry
     if @post.save
       @post.save_categories(category_list)
       redirect_to root_path

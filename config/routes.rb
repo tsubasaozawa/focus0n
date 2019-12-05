@@ -1,15 +1,19 @@
 Rails.application.routes.draw do
   devise_for :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  get "posts/search" => "posts#search"
+  root 'posts#index'
+  # get "posts/search" => "posts#search"
 
-  resources :users, only: [:index, :show, :edit]
-  resources :posts, only: [:index, :new, :show, :create] do
-    resources :likes, only: [:create, :destroy]
-    resources :comments, only: [:create, :destroy]
+  resources :users, only: [:index, :show, :edit] do
+    member do 
+      get :liked 
+    end
   end
 
-  get "users/:id/liked" => "users#liked"
-
-  root 'posts#index'
+  resources :posts, only: [:new, :show, :create] do
+    resources :likes, only: [:create, :destroy]
+    resources :comments, only: [:create, :destroy]
+    collection do
+      get :search
+    end
+  end
 end

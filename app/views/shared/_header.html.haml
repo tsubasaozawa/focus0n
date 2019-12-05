@@ -6,7 +6,7 @@
           = fa_icon 'film'
           focus0n
       .search-field
-        = form_with url: "/posts/search", method: :get, local: true, class: "search-box" do |f|
+        = form_with url: search_posts_path, method: :get, local: true, class: "search-box" do |f|
           = f.text_field :keyword, placeholder: ' キーワードを入力してください', class: "input-text" 
           %button.btn-search{title: "検索", type: "submit"}
             = fa_icon "search", class: "search-form__icon"
@@ -15,7 +15,7 @@
     .right-header
       - if user_signed_in?
         .like-list
-          = link_to "users/#{current_user.id}/liked", class: "like-list-icon" do
+          = link_to liked_user_path(current_user.id), class: "like-list-icon" do
             = fa_icon 'heart-o'
         .mypage
           = link_to user_path(current_user.id), class: "user-icon" do
@@ -31,18 +31,27 @@
               %li
                 %p.left-searchlist__item 言語から探す
                 %ul.left-searchlist__menu
-                  %li.left-searchlist__menu1-1 ・HTML
-                  %li.left-searchlist__menu1-2 ・CSS
-                  %li.left-searchlist__menu1-3 ・Ruby
-                  %li.left-searchlist__menu1-3 ・Go
-                  %li.left-searchlist__menu1-3 ・PHP
-                  %li.left-searchlist__menu1-3 ・Python
+                  = link_to search_posts_path(keyword: "HTML") , class: "none-decoration-link" do
+                    %li.left-searchlist__menu1-1 ・HTML
+                  = link_to search_posts_path(keyword: "CSS") , class: "none-decoration-link" do
+                    %li.left-searchlist__menu1-2 ・CSS
+                  = link_to search_posts_path(keyword: "javascript") , class: "none-decoration-link" do
+                    %li.left-searchlist__menu1-3 ・javascript
+                  = link_to search_posts_path(keyword: "Python") , class: "none-decoration-link" do
+                    %li.left-searchlist__menu1-3 ・Python
+                  = link_to search_posts_path(keyword: "PHP") , class: "none-decoration-link" do
+                    %li.left-searchlist__menu1-3 ・PHP
+                  = link_to search_posts_path(keyword: "Java") , class: "none-decoration-link" do
+                    %li.left-searchlist__menu1-3 ・Java
               %li
                 %p.left-searchlist__item 機能から探す
                 %ul.left-searchlist__menu
-                  %li.left-searchlist__menu2-1 ・ログイン機能
-                  %li.left-searchlist__menu2-2 ・ページネーション機能
-                  %li.left-searchlist__menu2-3 ・プレビュー機能
+                  = link_to search_posts_path(keyword: "ログイン機能") , class: "none-decoration-link" do
+                    %li.left-searchlist__menu2-1 ・ログイン機能
+                  = link_to search_posts_path(keyword: "ページネーション機能") , class: "none-decoration-link" do
+                    %li.left-searchlist__menu2-2 ・ページネーション機能
+                  = link_to search_posts_path(keyword: "プレビュー機能") , class: "none-decoration-link" do
+                    %li.left-searchlist__menu2-3 ・プレビュー機能
 
         .signout
           = link_to destroy_user_session_path, method: :delete, class: "signout-btn" do

@@ -33,13 +33,7 @@
             .show-contents__items__detail__upper-info__top__like-info
               #{@post.likes.count}人がいいねしています！
               - if user_signed_in?
-                - if current_user.already_liked?(@post)
-                  = link_to post_like_path(@post), method: :delete do
-                    = fa_icon "heart", class: "liked-icon"
-                - else
-                  = link_to post_likes_path(@post), method: :post do
-                    -# link_toでデータベースに情報を入れる際はmethod: :postを記載
-                    = fa_icon "heart-o", class: "like-icon"
+                = render "likes/like", post: @post
               - else
                 = link_to new_user_session_path do
                   = fa_icon "heart-o", class: "like-icon"
